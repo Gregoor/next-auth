@@ -69,7 +69,8 @@ export interface Adapter {
     userId: string
   ) => Promise<void> | Awaitable<AdapterUser | null | undefined>
   linkAccount: (
-    account: Account
+    account: Account,
+    profile: User
   ) => Promise<void> | Awaitable<Account | null | undefined>
   /** @todo Implement */
   unlinkAccount?: (

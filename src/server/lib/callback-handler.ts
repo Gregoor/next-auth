@@ -150,7 +150,7 @@ export default async function callbackHandler(
       if (user) {
         // If the user is already signed in and the OAuth account isn't already associated
         // with another user account then we can go ahead and link the accounts safely.
-        await linkAccount({ ...account, userId: user.id })
+        await linkAccount({ ...account, userId: user.id }, profile)
         await events.linkAccount?.({ user, account })
 
         // As they are already signed in, we don't need to do anything after linking them
@@ -200,7 +200,7 @@ export default async function callbackHandler(
       user = await createUser(newUser)
       await events.createUser?.({ user })
 
-      await linkAccount({ ...account, userId: user.id })
+      await linkAccount({ ...account, userId: user.id }, profile)
       await events.linkAccount?.({ user, account })
 
       session = useJwtSession
